@@ -1,17 +1,17 @@
 <template>
-    <div style="width: 100%; height: 100vh; background-color: #B0C4DE; overflow: hidden">
+    <div class="home" style="width: 100%; height: 100vh; background-color: #B0C4DE; overflow: hidden">
         <div style="width:400px; margin:100px auto">
-            <div style="color: #FFF; font-size: 30px; text-align: center; padding: 40px 0; margin-left: 50px;">注册</div>
-            <el-form ref="form" :model="form" size="normal" :rules="rules" label-width="80px">
+            <div style="color: black; font-size: 30px; text-align: center; padding: 40px 0; margin-left: 50px;">欢迎注册</div>
+            <el-form ref="form" :model="form" size="large" :rules="rules" label-width="80px">
                 <el-form-item label="用户名" prop="username">
                     <el-input prefix-icon="el-icon-user-solid" v-model="form.username"></el-input>
                 </el-form-item>
                 <el-form-item label="密码" prop="password">
                     <el-input prefix-icon="el-icon-lock" v-model="form.password" show-password></el-input>
                 </el-form-item>
-                <el-form-item label="确认密码" prop="confirm">
-                    <el-input prefix-icon="el-icon-lock" v-model="form.confirm" show-password></el-input>
-                </el-form-item>
+<!--                <el-form-item label="确认密码" prop="confirm">-->
+<!--                    <el-input prefix-icon="el-icon-lock" v-model="form.confirm" show-password></el-input>-->
+<!--                </el-form-item>-->
                 <el-form-item>
                     <el-button style="width: 100%;" type="primary" @click="register">注 册</el-button>
                 </el-form-item>
@@ -39,23 +39,23 @@ export default {
                         required: true, message: '请输入密码', trigger: 'blur'
                     }
                 ],
-                confirm: [
-                    {
-                        required: true, message: '请确认密码', trigger: 'blur'
-                    }
-                ]
+                // confirm: [
+                //     {
+                //         required: true, message: '请确认密码', trigger: 'blur'
+                //     }
+                // ]
             }
         }
     },
     methods:{
         register(){
-            if(this.form.password !== this.form.confirm){
-                this.$message({
-                    type: "error",
-                    message: '两次密码输入不一致'
-                })
-                return
-            }
+            // if(this.form.password !== this.form.confirm){
+            //     this.$message({
+            //         type: "error",
+            //         message: '两次密码输入不一致'
+            //     })
+            //     return
+            // }
 
             this.$refs['form'].validate((valid) => {
                 if(valid){
@@ -91,5 +91,11 @@ export default {
 
 .el-input {
     width: 100%;
+}
+.home{
+    width: 100%;
+    height: 100vh;
+    background: url("a.png") center center no-repeat;
+    background-size: 100% 100%;
 }
 </style>

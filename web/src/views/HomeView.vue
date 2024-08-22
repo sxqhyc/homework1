@@ -1,13 +1,21 @@
 <template>
-  <div style="padding: 10px">
-    <div style="margin: 10px 0">
-      <el-button type="primary" @click="add">新增</el-button>
+  <div style="padding: 10px" class="page-wrapper">
+<!--    <div style="margin: 20px 0">-->
+<!--      <el-button size="medium" type="primary" @click="add">新增</el-button>-->
+<!--    </div>-->
+<!--    <div style="margin: 25px 0">-->
+<!--      <el-input size="medium" v-model="search" placeholder="请输入用户名" style="width: 20%" clearable></el-input>-->
+<!--      <el-button size="medium" type="primary" style="margin-left: 5px" @click="load">查询</el-button>-->
+<!--    </div>-->
+    <div style="margin: 20px 0" class="button-container">
+      <el-button size="large" :style="{ backgroundColor: '#e1f3d8', color: 'black' }" round @click="add">新增</el-button>
+      <div class="search-container">
+        <el-input size="large" v-model="search" placeholder="请输入用户名" clearable></el-input>
+        <el-button size="large":style="{ backgroundColor: '#d9ecff', color: 'black' }" @click="load">查询</el-button>
+      </div>
     </div>
-    <div style="margin: 10px 0">
-      <el-input v-model="search" placeholder="请输入关键字" style="width: 20%" clearable></el-input>
-      <el-button type="primary" style="margin-left: 5px" @click="load">查询</el-button>
-    </div>
-    <el-table :data="tableData" border stripe style="width: 100%">
+    <div class = "content">
+    <el-table :data="tableData" border stripe style="width: 100%" size="medium">
     <el-table-column prop="id" label="ID" sortable/>
     <el-table-column prop="address" label="头像">
       <template #default="scope">
@@ -19,19 +27,19 @@
       </template>
     </el-table-column>
     <el-table-column prop="username" label="用户名" />
-    <el-table-column prop="nickName" label="昵称" />
+    <el-table-column prop="phone" label="电话" />
     <el-table-column prop="age" label="年龄" />
     <el-table-column prop="sex" label="性别" />
     <el-table-column prop="address" label="地址" />
     <el-table-column fixed="right" label="操作" min-width="120">
 
       <template #default="scope">
-        <el-button size="mini" @click="handleEdit(scope.row)">
+        <el-button size="medium":style="{ backgroundColor: '#fdf6ec', color: 'black' }" round @click="handleEdit(scope.row)">
           编辑
         </el-button>
-        <el-popconfirm title="确认删除吗？" @confirm="handleDelete(scope.row.id)">
+        <el-popconfirm title="确认删除吗？"  size="large" @confirm="handleDelete(scope.row.id)">
           <template #reference>
-            <el-button size="mini" type="danger">删除</el-button>
+            <el-button size="medium":style="{ backgroundColor: '#fde2e2', color:'black'}" round >删除</el-button>
           </template>
         </el-popconfirm>
       </template>
@@ -52,14 +60,14 @@
     />
     <el-dialog
     v-model="dialogVisible"
-    title="Tips"
+    title="编辑信息"
     width="500">
-    <el-form label-width="120px">
+    <el-form label-width="120px" size="medium">
       <el-form-item :model="form" label="用户名">
         <el-input v-model="form.username" style="width: 80%"/>
       </el-form-item>
-      <el-form-item :model="form" label="昵称">
-        <el-input v-model="form.nickName" style="width: 80%"/>
+      <el-form-item :model="form" label="电话">
+        <el-input v-model="form.phone" style="width: 80%"/>
       </el-form-item>
       <el-form-item :model="form" label="年龄">
         <el-input v-model="form.age" style="width: 80%"/>
@@ -67,7 +75,7 @@
       <el-form-item :model="form" label="性别">
         <el-radio v-model="form.sex" label="男">男</el-radio>
         <el-radio v-model="form.sex" label="女">女</el-radio>
-        <el-radio v-model="form.sex" label="未知">未知</el-radio>
+        <el-radio v-model="form.sex" label="保密">保密</el-radio>
       </el-form-item>
       <el-form-item :model="form" label="地址">
         <el-input type="textarea" v-model="form.address" style="width: 80%"/>
@@ -83,8 +91,8 @@
     </el-form>
       <template #footer>
         <div class="dialog-footer">
-          <el-button @click="dialogVisible = false">取消</el-button>
-          <el-button type="primary" @click="save">
+          <el-button size="medium" @click="dialogVisible = false">取消</el-button>
+          <el-button size="medium" type="primary" @click="save">
             确定
           </el-button>
         </div>
@@ -92,11 +100,13 @@
     </el-dialog>
   </div>
   </div>
+  </div>
 </template>
 
 <script>
 
 import request from '@/utils/request';
+
 
 export default {
   name: 'HomeView',
@@ -231,3 +241,50 @@ export default {
   }
 }
 </script>
+<!--<style scoped>-->
+<!--  .page-wrapper {-->
+<!--    background-color: #fdf6ec; /* 这里设置你想要的背景颜色 */-->
+<!--    padding: 20px;-->
+<!--    min-height: 100vh; /* 使页面高度至少占满视口 */-->
+<!--  }-->
+<!--</style>-->
+<!--<style scoped>-->
+<!--  .page-wrapper {-->
+<!--    background-image: url('a.png'); /* 这里替换为你的背景图片路径 */-->
+<!--    background-size: cover; /* 确保背景图覆盖整个页面 */-->
+<!--    background-position: center; /* 背景图居中 */-->
+<!--    background-repeat: no-repeat; /* 背景图不重复 */-->
+
+<!--    min-height: 100vh; /* 使页面高度至少占满视口 */-->
+<!--    padding: 20px;-->
+<!--    z-index: 1; /* 确保背景图在内容后面 */-->
+<!--  }-->
+<!--  .content{-->
+<!--    z-index: 0;-->
+<!--  }-->
+
+
+<!--</style>-->
+<style>
+  body {
+    background-image: url("a.png");
+    background-size: cover;
+  }
+   .button-container {
+     display: flex;
+     justify-content: flex-start; /* 让新增按钮在最左侧 */
+     align-items: center; /* 垂直居中对齐内容 */
+     position: relative; /* 使搜索容器可以绝对定位 */
+   }
+
+  .search-container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%); /* 使搜索容器水平居中 */
+    display: flex;
+    align-items: center;
+    margin: 0; /* 移除容器的默认边距 */
+  }
+
+
+</style>

@@ -11,8 +11,7 @@ public class User {
     @TableId(type = IdType.AUTO)
     private Integer id;
     private String username;
-    private String password;
-    private String nickName;
+    private String phone;
     private Integer age;
     private String sex;
     private String address;
