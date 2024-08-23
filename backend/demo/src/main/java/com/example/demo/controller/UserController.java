@@ -21,7 +21,7 @@ public class UserController {
 
 
     @PostMapping
-    public Result<?> save(@RequestBody User user){
+    public Result<?> save(@RequestBody User user) {
 //        if(user.getPassword() == null){
 //            user.setPassword("123456");
 //        }
